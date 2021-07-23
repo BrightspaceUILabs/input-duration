@@ -47,17 +47,17 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				display: none;
 			}
 			.d2l-input-duration-unit {
-				border: none;
 				background: #f9fbff;
-				padding: ${VERTICAL_PADDING}px ${HORIZONTAL_PADDING}px;
+				border: none;
 				border-radius: 5px;
 				caret-color: transparent;
 				font-family: inherit;
 				font-size: 0.8rem;
 				font-weight: bold;
-				text-align: right;
-				line-height: 1rem;
 				height: 1rem;
+				line-height: 1rem;
+				padding: ${VERTICAL_PADDING}px ${HORIZONTAL_PADDING}px;
+				text-align: right;
 			}
 			.d2l-input-duration-unit::placeholder {
 				font-weight: bold;
@@ -74,8 +74,8 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				color: white;
 			}
 			.d2l-input-duration-unit-wrapper {
-				display: inline-flex;
 				align-items: center;
+				display: inline-flex;
 				position: relative;
 			}
 			.d2l-input-duration-unit-label-container {

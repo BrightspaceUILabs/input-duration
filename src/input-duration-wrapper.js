@@ -13,11 +13,11 @@ class InputDurationWrapper extends LocalizeMixin(LitElement) {
 				display: none;
 			}
 			.d2l-input-duration-wrapper {
-				display: inline-flex;
 				align-items: center;
-				padding: 5px 5px 5px 10px;
 				border: solid 1px #b5bdc2;
 				border-radius: 5px;
+				display: inline-flex;
+				padding: 5px 5px 5px 10px;
 			}
 			::slotted(*) {
 				margin-left: 5px;

@@ -218,18 +218,26 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		const change = new CustomEvent('change', {
 			detail: {
 				value
-			}
+			},
+			bubbles: false,
+			composed: false
 		});
 		this.dispatchEvent(change);
 	}
 
 	_dispatchNextEvent() {
-		const next = new CustomEvent('next');
+		const next = new CustomEvent('next', {
+			bubbles: false,
+			composed: false
+		});
 		this.dispatchEvent(next);
 	}
 
 	_dispatchPreviousEvent() {
-		const previous = new CustomEvent('previous');
+		const previous = new CustomEvent('previous', {
+			bubbles: false,
+			composed: false
+		});
 		this.dispatchEvent(previous);
 	}
 

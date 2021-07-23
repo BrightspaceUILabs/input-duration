@@ -32,7 +32,7 @@
     "stylelint": "^13"
   },
   "files": [
-    "input-duration.js",
+    "/src",
     "input-duration.serge.json",
     "/lang"
   ],

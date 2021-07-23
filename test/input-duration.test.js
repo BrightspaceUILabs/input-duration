@@ -6,7 +6,7 @@ describe('InputDuration', () => {
 
 	describe('accessibility', () => {
 		it('should pass all aXe tests', async() => {
-			const el = await fixture(html`<d2l-labs-input-duration></d2l-labs-input-duration>`);
+			const el = await fixture(html`<d2l-labs-input-duration units="hours:minutes"></d2l-labs-input-duration>`);
 			await expect(el).to.be.accessible();
 		});
 	});

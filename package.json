@@ -42,5 +42,6 @@
   "dependencies": {
     "@brightspace-ui/core": "^1",
     "lit-element": "^2"
-  }
+  },
+  "version": "0.0.1"
 }

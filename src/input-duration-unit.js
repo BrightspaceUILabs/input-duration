@@ -1,3 +1,4 @@
+import '@brightspace-ui/core/components/colors/colors.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import LocalizeMixin from './mixins/localize-mixin';
@@ -47,7 +48,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				display: none;
 			}
 			.d2l-input-duration-unit {
-				background: #f9fbff;
+				background-color: var(--d2l-color-regolith);
 				border: none;
 				border-radius: 5px;
 				caret-color: transparent;
@@ -64,7 +65,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 			}
 			.d2l-input-duration-unit:focus,
 			.d2l-input-duration-unit-focus {
-				background: #006fbe;
+				background-color: var(--d2l-color-celestine);
 				color: white;
 				outline-style: none;
 				outline-width: 0;

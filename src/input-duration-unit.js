@@ -12,8 +12,14 @@ function clamp(value, min, max) {
 	return Math.min(Math.max(value, min), max);
 }
 
+// Counts the number of digits in an integer
+// Decimal values are truncated before counting
 function getDigitCount(value) {
-	return Math.trunc(Math.log10(value)) + 1;
+	const intValue = Math.trunc(value);
+
+	if (intValue === 0) return 1;
+
+	return Math.trunc(Math.log10(Math.abs(intValue))) + 1;
 }
 
 class InputDurationUnit extends LocalizeMixin(LitElement) {
@@ -31,7 +37,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				attribute: 'unit-label'
 			},
 			value: {
-				type: String
+				type: Number
 			},
 			_unitContainerWidth: { type: Number },
 			_focused: { type: Boolean },
@@ -95,7 +101,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this.max = 99;
 		this.min = 0;
 		this.unitLabel = null;
-		this.value = '';
+		this.value = null;
 		this._unitContainerWidth = 0;
 		this._focused = false;
 	}
@@ -126,10 +132,10 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	set value(val) {
 		const oldValue = this._value;
 
-		if (!val) {
-			this._value = '';
+		if (!val && val !== 0) {
+			this._value = null;
 		} else {
-			this._value = val.padStart(this.maxDigits, '0');
+			this._value = val;
 		}
 
 		if (this._value !== oldValue) {
@@ -167,8 +173,8 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					type="text"
 					class=${classMap(inputClass)}
 					style=${styleMap(inputStyles)}
-					placeholder=${'0'.repeat(this.maxDigits)}
-					.value=${this.value}
+					placeholder=${'–'.repeat(this.maxDigits)}
+					.value=${this.value !== null ? this.value.toString() : ''}
 					@beforeinput=${this._handleBeforeInput}
 					@blur=${this._handleBlur}
 					@focus=${this._handleFocus}
@@ -197,14 +203,14 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	}
 
 	_clear() {
-		this.value = '';
+		this.value = null;
 	}
 
 	_decrementValue() {
-		const newValue = Number(this.value || '0') - 1;
+		const newValue = this.value === null ? 0 : this.value - 1;
 
 		if (newValue >= this.min) {
-			this.value = newValue.toString();
+			this.value = newValue;
 		}
 	}
 
@@ -227,9 +233,13 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this.dispatchEvent(previous);
 	}
 
-	_enterCharacters(chars) {
-		const newValue = this.value + chars;
-		this.value = newValue.slice(-this.maxDigits);
+	_enterNewNumbers(newNums) {
+		// Shift the current value by the number of digits the new numbers have (eg. 12 -> 1200)
+		let newValue = this.value * (10 ** getDigitCount(newNums));
+		// Add the new numbers (e.g. 1200 -> 1234)
+		newValue += newNums;
+		// Cut off the digits over the max (e.g. 1234 -> 34)
+		this.value = newValue % (10 ** this.maxDigits);
 	}
 
 	_handleBeforeInput(e) {
@@ -243,13 +253,13 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 
 		num = clamp(num, 0, this.highestMaxDigitsNumber);
 
-		this._enterCharacters(num.toString());
+		this._enterNewNumbers(num);
 	}
 
 	_handleBlur() {
 		this._focused = false;
-		if (this.value) {
-			this.value = clamp(Number(this.value), this.min, this.max).toString();
+		if (this.value !== null) {
+			this.value = clamp(this.value, this.min, this.max);
 		}
 	}
 
@@ -282,10 +292,10 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	}
 
 	_incrementValue() {
-		const newValue = Number(this.value || '0') + 1;
+		const newValue = (this.value || 0) + 1;
 
 		if (newValue <= this.max) {
-			this.value = newValue.toString();
+			this.value = newValue;
 		}
 	}
 

@@ -39,9 +39,9 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 			value: {
 				type: Number
 			},
-			_unitContainerWidth: { type: Number },
-			_focused: { type: Boolean },
-			_hovered: { type: Boolean }
+			_unitContainerWidth: { type: Number, attribute: false },
+			_focused: { type: Boolean, attribute: false },
+			_hovered: { type: Boolean, attribute: false }
 		};
 	}
 

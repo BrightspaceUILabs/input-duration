@@ -36,6 +36,10 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				type: String,
 				attribute: 'unit-label'
 			},
+			unitName: {
+				type: String,
+				attribute: 'unit-name'
+			},
 			value: {
 				type: Number
 			},
@@ -174,6 +178,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					class=${classMap(inputClass)}
 					style=${styleMap(inputStyles)}
 					placeholder=${'–'.repeat(this.maxDigits)}
+					aria-label=${this.unitName}
 					.value=${this.value !== null ? this.value.toString() : ''}
 					@beforeinput=${this._handleBeforeInput}
 					@blur=${this._handleBlur}
@@ -181,6 +186,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					@keydown=${this._handleKeyDown}
 				></input>
 				<span class=${classMap(unitLabelContainerClass)}
+					aria-hidden="true"
 					@click=${this.focus}
 				>${this.unitLabel}</span>
 			</span>

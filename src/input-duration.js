@@ -13,14 +13,6 @@ const unitTypes = {
 	seconds: 'seconds'
 };
 
-const untiLabels = {
-	[unitTypes.weeks]: 'week',
-	[unitTypes.days]: 'day',
-	[unitTypes.hours]: 'hour',
-	[unitTypes.minutes]: 'min',
-	[unitTypes.seconds]: 'sec'
-};
-
 const defaultUnitMaximums = {
 	[unitTypes.weeks]: 52,
 	[unitTypes.days]: 7,
@@ -77,6 +69,13 @@ class InputDuration extends LocalizeMixin(LitElement) {
 			largestUnitMax: {
 				type: Number,
 				attribute: 'largest-unit-max'
+			},
+			label: {
+				type: String
+			},
+			labelHidden: {
+				type: Boolean,
+				attribute: 'label-hidden'
 			}
 		};
 	}
@@ -97,14 +96,19 @@ class InputDuration extends LocalizeMixin(LitElement) {
 
 		this.units = [];
 		this.largestUnitMax = 99;
+		this.labelHidden = false;
 	}
 
 	render() {
 		return html`
-			<d2l-labs-input-duration-wrapper>
+			<d2l-labs-input-duration-wrapper
+				label=${ifDefined(this.label)}
+				?label-hidden=${this.labelHidden}
+			>
 				${repeat(this.units, (unit) => unit, (unit, index) => html`
 					<d2l-labs-input-duration-unit
-						unit-label=${untiLabels[unit]}
+						unit-label=${this.localize(`unitLabel:${unit}`)}
+						unit-name=${this.localize(`unitName:${unit}`)}
 						max=${index === 0 ? this.largestUnitMax : defaultUnitMaximums[unit]}
 						value=${ifDefined(this._getUnitValue(unit))}
 						@change=${this._genUnitChangeHandler(unit)}

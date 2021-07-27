@@ -108,6 +108,8 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this.value = null;
 		this._unitContainerWidth = 0;
 		this._focused = false;
+
+		this.addEventListener('click', this._handleClick);
 	}
 
 	get max() { return this._max; }
@@ -180,14 +182,14 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					placeholder=${'–'.repeat(this.maxDigits)}
 					aria-label=${this.unitNameFull}
 					.value=${this.value !== null ? this.value.toString() : ''}
-					@beforeinput=${this._handleBeforeInput}
-					@blur=${this._handleBlur}
-					@focus=${this._handleFocus}
-					@keydown=${this._handleKeyDown}
+					@beforeinput=${this._handleInputBeforeInput}
+					@blur=${this._handleInputBlur}
+					@focus=${this._handleInputFocus}
+					@keydown=${this._handleInputKeyDown}
 				></input>
-				<span class=${classMap(unitLabelContainerClass)}
+				<span
+					class=${classMap(unitLabelContainerClass)}
 					aria-hidden="true"
-					@click=${this.focus}
 				>${this.unitNameShort}</span>
 			</span>
 		`;
@@ -256,7 +258,11 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this.value = newValue % (10 ** this.maxDigits);
 	}
 
-	_handleBeforeInput(e) {
+	_handleClick() {
+		if (!this._focused) this.focus();
+	}
+
+	_handleInputBeforeInput(e) {
 		e.preventDefault();
 
 		if (!e.data) return this._clear();
@@ -270,21 +276,21 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this._enterNewNumbers(num);
 	}
 
-	_handleBlur() {
+	_handleInputBlur() {
 		this._focused = false;
 		if (this.value !== null) {
 			this.value = clamp(this.value, this.min, this.max);
 		}
 	}
 
-	_handleFocus(e) {
+	_handleInputFocus(e) {
 		this._focused = true;
 
 		// This prevents the contets of the input from being selected by default when tabbing into it
 		e.target.setSelectionRange(0, 0);
 	}
 
-	_handleKeyDown(e) {
+	_handleInputKeyDown(e) {
 		switch (e.key) {
 			case 'ArrowUp':
 				this._incrementValue();

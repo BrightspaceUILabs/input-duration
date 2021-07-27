@@ -32,13 +32,13 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 			min: {
 				type: Number
 			},
-			unitLabel: {
+			unitNameShort: {
 				type: String,
-				attribute: 'unit-label'
+				attribute: 'unit-name-short'
 			},
-			unitName: {
+			unitNameFull: {
 				type: String,
-				attribute: 'unit-name'
+				attribute: 'unit-name-full'
 			},
 			value: {
 				type: Number
@@ -104,7 +104,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 
 		this.max = 99;
 		this.min = 0;
-		this.unitLabel = null;
+		this.unitNameShort = null;
 		this.value = null;
 		this._unitContainerWidth = 0;
 		this._focused = false;
@@ -178,7 +178,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					class=${classMap(inputClass)}
 					style=${styleMap(inputStyles)}
 					placeholder=${'–'.repeat(this.maxDigits)}
-					aria-label=${this.unitName}
+					aria-label=${this.unitNameFull}
 					.value=${this.value !== null ? this.value.toString() : ''}
 					@beforeinput=${this._handleBeforeInput}
 					@blur=${this._handleBlur}
@@ -188,7 +188,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				<span class=${classMap(unitLabelContainerClass)}
 					aria-hidden="true"
 					@click=${this.focus}
-				>${this.unitLabel}</span>
+				>${this.unitNameShort}</span>
 			</span>
 		`;
 	}
@@ -197,7 +197,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		super.updated(changedProperties);
 
 		changedProperties.forEach((oldVal, prop) => {
-			if (prop === 'unitLabel') {
+			if (prop === 'unitNameShort') {
 				this._updateInputLayout();
 			}
 		});

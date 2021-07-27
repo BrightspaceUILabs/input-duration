@@ -1,14 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
-	"unitLabel:weeks": "week",
-	"unitLabel:days": "day",
-	"unitLabel:hours": "hour",
-	"unitLabel:minutes": "min",
-	"unitLabel:seconds": "sec",
-	"unitName:weeks": "weeks",
-	"unitName:days": "days",
-	"unitName:hours": "hours",
-	"unitName:minutes": "minutes",
-	"unitName:seconds": "seconds"
+	"unitNameShort:weeks": "week",
+	"unitNameShort:days": "day",
+	"unitNameShort:hours": "hour",
+	"unitNameShort:minutes": "min",
+	"unitNameShort:seconds": "sec",
+	"unitNameFull:weeks": "weeks",
+	"unitNameFull:days": "days",
+	"unitNameFull:hours": "hours",
+	"unitNameFull:minutes": "minutes",
+	"unitNameFull:seconds": "seconds"
 };

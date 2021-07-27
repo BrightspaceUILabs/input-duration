@@ -107,8 +107,8 @@ class InputDuration extends LocalizeMixin(LitElement) {
 			>
 				${repeat(this.units, (unit) => unit, (unit, index) => html`
 					<d2l-labs-input-duration-unit
-						unit-label=${this.localize(`unitLabel:${unit}`)}
-						unit-name=${this.localize(`unitName:${unit}`)}
+						unit-name-short=${this.localize(`unitNameShort:${unit}`)}
+						unit-name-full=${this.localize(`unitNameFull:${unit}`)}
 						max=${index === 0 ? this.largestUnitMax : defaultUnitMaximums[unit]}
 						value=${ifDefined(this._getUnitValue(unit))}
 						@change=${this._genUnitChangeHandler(unit)}

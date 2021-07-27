@@ -3,14 +3,12 @@ import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/inputs/input-fieldset.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { LabelledMixin } from '@brightspace-ui/core/mixins/labelled-mixin.js';
 import LocalizeMixin from './mixins/localize-mixin';
 
-class InputDurationWrapper extends LocalizeMixin(LitElement) {
+class InputDurationWrapper extends LabelledMixin(LocalizeMixin(LitElement)) {
 	static get properties() {
 		return {
-			label: {
-				type: String
-			},
 			labelHidden: {
 				type: Boolean,
 				attribute: 'label-hidden'
@@ -43,6 +41,13 @@ class InputDurationWrapper extends LocalizeMixin(LitElement) {
 		super();
 
 		this.labelHidden = false;
+	}
+
+	firstUpdated(changedProperties) {
+		super.firstUpdated(changedProperties);
+		if (!this.label) {
+			console.warn('d2l-labs-input-duration-wrapper component requires label text');
+		}
 	}
 
 	render() {

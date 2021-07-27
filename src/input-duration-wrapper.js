@@ -34,7 +34,7 @@ class InputDurationWrapper extends LabelledMixin(LocalizeMixin(LitElement)) {
 				padding: 5px 5px 5px 10px;
 			}
 			::slotted(*) {
-				padding: 5px 5px 5px 0px;
+				padding: 5px 5px 5px 0;
 			}
 		`;
 	}

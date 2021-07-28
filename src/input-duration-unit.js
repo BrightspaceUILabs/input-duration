@@ -5,7 +5,6 @@ import LocalizeMixin from './mixins/localize-mixin';
 import { styleMap } from 'lit-html/directives/style-map.js';
 
 const HORIZONTAL_PADDING = 8;
-const VERTICAL_PADDING = 6;
 const INPUT_UNIT_SPACING = 5;
 
 function clamp(value, min, max) {
@@ -43,6 +42,9 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 			value: {
 				type: Number
 			},
+			disabled: {
+				type: Boolean
+			},
 			_unitContainerWidth: { type: Number, attribute: false },
 			_focused: { type: Boolean, attribute: false },
 			_hovered: { type: Boolean, attribute: false }
@@ -67,11 +69,17 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				font-weight: bold;
 				height: 1rem;
 				line-height: 1rem;
-				padding: ${VERTICAL_PADDING}px ${HORIZONTAL_PADDING}px;
+				padding: 7px ${HORIZONTAL_PADDING}px 5px;
 				text-align: right;
 			}
 			.d2l-input-duration-unit::placeholder {
 				font-weight: bold;
+			}
+			.d2l-input-duration-unit-disabled {
+				color: var(--d2l-color-corundum);
+			}
+			.d2l-input-duration-unit-disabled::placeholder {
+				color: var(--d2l-color-corundum);
 			}
 			.d2l-input-duration-unit:focus,
 			.d2l-input-duration-unit-focus {
@@ -90,8 +98,13 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 				position: relative;
 			}
 			.d2l-input-duration-unit-label-container {
+				font-size: 0.9rem;
+				padding-top: 2px;
 				position: absolute;
 				right: ${HORIZONTAL_PADDING}px;
+			}
+			.d2l-input-duration-unit-label-container-disabled {
+				color: var(--d2l-color-corundum);
 			}
 			.d2l-input-duration-unit-label-container-focus {
 				color: white;
@@ -106,6 +119,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		this.min = 0;
 		this.unitNameShort = null;
 		this.value = null;
+		this.disabled = false;
 		this._unitContainerWidth = 0;
 		this._focused = false;
 
@@ -161,6 +175,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	render() {
 		const inputClass = {
 			'd2l-input-duration-unit': true,
+			'd2l-input-duration-unit-disabled': this.disabled,
 			'd2l-input-duration-unit-focus': this._focused
 		};
 		const inputStyles = {
@@ -170,6 +185,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 
 		const unitLabelContainerClass = {
 			'd2l-input-duration-unit-label-container': true,
+			'd2l-input-duration-unit-label-container-disabled': this.disabled,
 			'd2l-input-duration-unit-label-container-focus': this._focused
 		};
 
@@ -181,6 +197,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 					style=${styleMap(inputStyles)}
 					placeholder=${'–'.repeat(this.maxDigits)}
 					aria-label=${this.unitNameFull}
+					?disabled=${this.disabled}
 					.value=${this.value !== null ? this.value.toString() : ''}
 					@beforeinput=${this._handleInputBeforeInput}
 					@blur=${this._handleInputBlur}

@@ -70,6 +70,12 @@ class InputDuration extends LocalizeMixin(LitElement) {
 				type: Number,
 				attribute: 'largest-unit-max'
 			},
+			disabled: {
+				type: Boolean
+			},
+			error: {
+				type: Boolean
+			},
 			label: {
 				type: String
 			},
@@ -96,12 +102,16 @@ class InputDuration extends LocalizeMixin(LitElement) {
 
 		this.units = [];
 		this.largestUnitMax = 99;
+		this.disabled = false;
+		this.error = false;
 		this.labelHidden = false;
 	}
 
 	render() {
 		return html`
 			<d2l-labs-input-duration-wrapper
+				?disabled=${this.disabled}
+				?error=${this.error}
 				label=${ifDefined(this.label)}
 				?label-hidden=${this.labelHidden}
 			>
@@ -111,6 +121,7 @@ class InputDuration extends LocalizeMixin(LitElement) {
 						unit-name-full=${this.localize(`unitNameFull:${unit}`)}
 						max=${index === 0 ? this.largestUnitMax : defaultUnitMaximums[unit]}
 						value=${ifDefined(this._getUnitValue(unit))}
+						?disabled=${this.disabled}
 						@change=${this._genUnitChangeHandler(unit)}
 						@next=${this._genUnitNextHandler(index)}
 						@previous=${this._genUnitPreviousHandler(index)}

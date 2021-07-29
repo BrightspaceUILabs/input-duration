@@ -20,9 +20,25 @@ describe('d2l-labs-input-duration', () => {
 
 	after(async() => await browser.close());
 
-	it('passes visual-diff comparison', async function() {
-		const rect = await visualDiff.getRect(page, '#default');
-		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+	[
+		'basic',
+		'disabled',
+		'error',
+		'label-hidden',
+		'all-units',
+		'all-units-all-values'
+	].forEach((test) => {
+		it(`[${test}] passes visual-diff comparison`, async function() {
+			const rect = await visualDiff.getRect(page, `#${test}`);
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 
+	it('[basic focus] passes visual-diff comparison', async function() {
+		const rect = await visualDiff.getRect(page, '#basic');
+		const elem = await page.$('#basic');
+		const elemBounds = await elem.boundingBox();
+		await page.mouse.click(elemBounds.x + 10, elemBounds.y + elemBounds.height - 10);
+		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+	});
 });

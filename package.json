@@ -10,16 +10,13 @@
     "start": "es-dev-server --app-index demo/index.html --node-resolve --dedupe --open --watch",
     "test": "npm run lint && npm run test:headless",
     "test:headless": "karma start",
-    "test:headless:watch": "karma start --auto-watch=true --single-run=false",
-    "test:visual": "mocha './test/**/*.visual-diff.js' -t 10000 --require esm",
-    "test:visual:golden": "mocha './test/**/*.visual-diff.js' -t 10000 --golden --require esm"
+    "test:headless:watch": "karma start --auto-watch=true --single-run=false"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/stylelint-config": "^0.1",
-    "@brightspace-ui/visual-diff": "^6.0.1",
     "@open-wc/testing": "^2",
     "@open-wc/testing-karma": "^4",
     "@webcomponents/webcomponentsjs": "^2",
@@ -30,10 +27,8 @@
     "eslint-plugin-html": "^6",
     "eslint-plugin-lit": "^1",
     "eslint-plugin-sort-class-members": "^1",
-    "esm": "^3.2.25",
     "karma-sauce-launcher": "^4",
     "lit-analyzer": "^1",
-    "puppeteer": "^10.1.0",
     "stylelint": "^13"
   },
   "files": [

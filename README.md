@@ -16,7 +16,11 @@
 > - [ ] Demo page
 > - [ ] README documentation
 
-An input component for tracking durations of time.
+An input component for tracking durations of time. It supports various configurations from weeks to seconds.
+
+![example screenshot of a basic duration input](./screenshots/basic.gif?raw=true)
+
+![example screenshot of a duration input with all supported units](./screenshots/all-units.gif?raw=true)
 
 ## Installation
 
@@ -32,14 +36,27 @@ npm install @brightspace-ui-labs/input-duration
 <script type="module">
     import '@brightspace-ui-labs/input-duration/input-duration.js';
 </script>
-<d2l-labs-input-duration>My element</d2l-labs-input-duration>
+<d2l-labs-input-duration
+    label="Duration"
+    units="hours:minutes"
+></d2l-labs-input-duration>
 ```
 
 **Properties:**
 
 | Property | Type | Description |
 |--|--|--|
-| | | |
+| `label` | String, required | Label for the input |
+| `label-hidden` | Boolean | Hides the label visually |
+| `units` | String, required | A colon (`:`) delimited list of the units to use (ex: `hours:minutes`). Supported units are `weeks` `days` `hours` `minutes` `seconds`. |
+| `largest-unit-max` | Number, default: `99` | Sets the max number for the largest unit of the selected set |
+| `weeks` | Number | Value of weeks for the input |
+| `days` | Number | Value of days for the input |
+| `hours` | Number | Value of hours for the input |
+| `minutes` | Number | Value of minutes for the input |
+| `seconds` | Number | Value of seconds for the input |
+| `disabled` | Boolean | Disables the input |
+| `error` | Boolean | Sets the input into an error state |
 
 **Accessibility:**
 
@@ -47,7 +64,12 @@ To make your usage of `d2l-labs-input-duration` accessible, use the following pr
 
 | Attribute | Description |
 |--|--|
-| | |
+| `label` | **REQUIRED**  [Acts as a primary label on the input](https://www.w3.org/WAI/tutorials/forms/labels/). Visible unless `label-hidden` is also used. |
+| `label-hidden` | Use if label should be visually hidden but available for screen reader users |
+
+**Events:**
+
+* `change`: Dispatched whenever a value changes for any of the units within the input. The event detail (`event.detail`) is an object containing the updated values for each unit (ex: an input with `weeks:days:hours:minutes:seconds` might have an `event.detail` like this: `{ weeks: 2, days: 5, hours: 10, minutes: 30, seconds: 0 }`).
 
 ## Developing, Testing and Contributing
 

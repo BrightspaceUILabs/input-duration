@@ -222,9 +222,17 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 		});
 	}
 
-	focus() {
+	async focus() {
 		const elem = this.shadowRoot.querySelector('input');
-		if (elem) elem.focus();
+		if (elem) {
+			elem.focus();
+		} else {
+			// If the input isn't found, then the component hasn't finished it's first render.
+			// Wait for current update to complete and try again.
+			// This primarily occurs during automated testing.
+			await this.updateComplete;
+			this.focus();
+		}
 	}
 
 	_clear() {

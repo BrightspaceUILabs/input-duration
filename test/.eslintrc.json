@@ -1,3 +1,4 @@
 {
-	"extends": "brightspace/open-wc-testing-config"
+	"extends": "brightspace/open-wc-testing-config",
+	"ignorePatterns": ["screenshots/current/*", "screenshots/golden/*"]
 }

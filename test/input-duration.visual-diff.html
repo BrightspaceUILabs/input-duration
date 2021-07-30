@@ -8,13 +8,60 @@
 		<title>d2l-labs-input-duration visual-diff tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
+		<style>
+			.visual-diff { margin-bottom: 30px; }
+		</style>
 	</head>
 	<body class="d2l-typography">
-		<div>
+		<div class="visual-diff">
 			<d2l-labs-input-duration
-				id="default"
+				id="basic"
 				units="hours:minutes"
 				label="Duration"
+			></d2l-labs-input-duration>
+		</div>
+		<div class="visual-diff">
+			<d2l-labs-input-duration
+				id="disabled"
+				units="hours:minutes"
+				label="Duration"
+				disabled
+			></d2l-labs-input-duration>
+		</div>
+		<div class="visual-diff">
+			<d2l-labs-input-duration
+				id="error"
+				units="hours:minutes"
+				label="Duration"
+				error
+			></d2l-labs-input-duration>
+		</div>
+		<div class="visual-diff">
+			<d2l-labs-input-duration
+				id="label-hidden"
+				units="hours:minutes"
+				label="Duration"
+				label-hidden
+			></d2l-labs-input-duration>
+		</div>
+		<div class="visual-diff">
+			<d2l-labs-input-duration
+				id="all-units"
+				units="weeks:days:hours:minutes:seconds"
+				label="Duration"
+			></d2l-labs-input-duration>
+		</div>
+		<div class="visual-diff">
+			<d2l-labs-input-duration
+				id="all-units-all-values"
+				label="Duration"
+				units="weeks:days:hours:minutes:seconds"
+				largest-unit-max="999"
+				weeks="999"
+				days="7"
+				hours="23"
+				minutes="59"
+				seconds="59"
 			></d2l-labs-input-duration>
 		</div>
 	</body>

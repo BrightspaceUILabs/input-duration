@@ -1,1 +1,1 @@
-import './src/input-duration';
+import './src/input-duration.js';

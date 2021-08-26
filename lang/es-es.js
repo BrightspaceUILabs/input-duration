@@ -1,5 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
-	"hello": "Hola"
+	"unitNameShort:weeks": "semana",
+	"unitNameShort:days": "día",
+	"unitNameShort:hours": "hora",
+	"unitNameShort:minutes": "min.",
+	"unitNameShort:seconds": "seg.",
+	"unitNameFull:weeks": "semanas",
+	"unitNameFull:days": "días",
+	"unitNameFull:hours": "horas",
+	"unitNameFull:minutes": "minutos",
+	"unitNameFull:seconds": "segundos"
 };

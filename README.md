@@ -126,7 +126,7 @@ npx mocha './test/**/*.visual-diff.js' -t 10000 --golden
 
 ### Running the demos
 
-To start an [es-dev-server](https://open-wc.org/developing/es-dev-server.html) that hosts the demo page and tests:
+To start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo page and tests:
 
 ```shell
 npm start

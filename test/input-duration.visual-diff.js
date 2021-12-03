@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
-import VisualDiff from '@brightspace-ui/visual-diff';
+import { VisualDiff } from '@brightspace-ui/visual-diff';
 
 describe('d2l-labs-input-duration', () => {
 
-	const visualDiff = new VisualDiff('input-duration', __dirname);
+	const visualDiff = new VisualDiff('input-duration', import.meta.url);
 
 	let browser, page;
 

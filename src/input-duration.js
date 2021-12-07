@@ -2,7 +2,7 @@ import './input-duration-unit.js';
 import './input-duration-wrapper.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
-import LocalizeMixin from './mixins/localize-mixin';
+import LocalizeMixin from './mixins/localize-mixin.js';
 import { repeat } from 'lit-html/directives/repeat.js';
 
 const unitTypes = {

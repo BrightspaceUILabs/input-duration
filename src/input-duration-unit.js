@@ -1,7 +1,7 @@
 import '@brightspace-ui/core/components/colors/colors.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import LocalizeMixin from './mixins/localize-mixin';
+import LocalizeMixin from './mixins/localize-mixin.js';
 import { styleMap } from 'lit-html/directives/style-map.js';
 
 const HORIZONTAL_PADDING = 8;

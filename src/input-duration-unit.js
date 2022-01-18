@@ -1,7 +1,7 @@
 import '@brightspace-ui/core/components/colors/colors.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { classMap } from 'lit-html/directives/class-map.js';
-import LocalizeMixin from './mixins/localize-mixin';
+import LocalizeMixin from './mixins/localize-mixin.js';
 import { styleMap } from 'lit-html/directives/style-map.js';
 
 const HORIZONTAL_PADDING = 8;
@@ -223,7 +223,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	}
 
 	async focus() {
-		const elem = this.shadowRoot.querySelector('input');
+		const elem = this.shadowRoot?.querySelector('input');
 		if (elem) {
 			elem.focus();
 		} else {
@@ -345,7 +345,7 @@ class InputDurationUnit extends LocalizeMixin(LitElement) {
 	}
 
 	_updateInputLayout() {
-		this._unitContainerWidth = this.shadowRoot.querySelector('.d2l-input-duration-unit-label-container').getBoundingClientRect().width;
+		this._unitContainerWidth = this.shadowRoot?.querySelector('.d2l-input-duration-unit-label-container').getBoundingClientRect().width;
 	}
 }
 customElements.define('d2l-labs-input-duration-unit', InputDurationUnit);

@@ -5,7 +5,7 @@ import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { LabelledMixin } from '@brightspace-ui/core/mixins/labelled-mixin.js';
-import LocalizeMixin from './mixins/localize-mixin';
+import LocalizeMixin from './mixins/localize-mixin.js';
 
 class InputDurationWrapper extends LabelledMixin(LocalizeMixin(LitElement)) {
 	static get properties() {

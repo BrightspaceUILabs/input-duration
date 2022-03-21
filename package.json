@@ -41,7 +41,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@brightspace-ui/core": "^1",
+    "@brightspace-ui/core": "^2",
     "lit-element": "^2"
   },
   "version": "1.3.0"

@@ -54,7 +54,9 @@ describe('InputDuration', () => {
 		});
 
 		it('[basic focus] should pass all aXe tests', async() => {
+			window.console.log('basic focus test - awaiting basic fixture');
 			const el = await fixture(fixtures.basic);
+			window.console.log('basic focus test - declaring focusEventPromise');
 			const focusEventPromise = oneEvent(el, 'focus');
 
 			window.console.log('basic focus test - querying for d2l-labs-input-duration-unit');
@@ -68,6 +70,7 @@ describe('InputDuration', () => {
 			await unitEl.updateComplete; // Wait for the component to finish updating after the focus event
 			window.console.log('basic focus test - awaiting .to.be.accessible()');
 			await expect(el).to.be.accessible();
+			window.console.log('basic focus test - to.be.accessible() completed');
 		});
 	});
 

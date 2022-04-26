@@ -57,11 +57,16 @@ describe('InputDuration', () => {
 			const el = await fixture(fixtures.basic);
 			const focusEventPromise = oneEvent(el, 'focus');
 
+			window.console.log('basic focus test - querying for d2l-labs-input-duration-unit');
 			const unitEl = el.shadowRoot.querySelector('d2l-labs-input-duration-unit');
+			window.console.log('basic focus test - calling focus()');
 			unitEl.focus();
 
+			window.console.log('basic focus test - awaiting focusEventPromise');
 			await focusEventPromise;
+			window.console.log('basic focus test - awaiting updateComplete');
 			await unitEl.updateComplete; // Wait for the component to finish updating after the focus event
+			window.console.log('basic focus test - awaiting .to.be.accessible()');
 			await expect(el).to.be.accessible();
 		});
 	});

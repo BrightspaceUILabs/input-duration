@@ -37,12 +37,6 @@ config.browsers = [
 		'sauce:options': extraOptions
 	}),
 	sauceLabsLauncher({
-		browserName: 'safari',
-		browserVersion: 'latest',
-		platformName: 'macOS 11.00',
-		'sauce:options': extraOptions
-	}),
-	sauceLabsLauncher({
 		browserName: 'microsoftedge',
 		browserVersion: 'latest',
 		platformName: 'Windows 10',

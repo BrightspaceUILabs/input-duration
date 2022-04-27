@@ -4,7 +4,7 @@ export default {
 	testFramework: {
 		config: {
 			ui: 'bdd',
-			timeout: '10000',
+			timeout: '20000',
 		}
 	},
 	testRunnerHtml: testFramework =>
